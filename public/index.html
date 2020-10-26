@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socker Server</title>
+  </head>
+  <body>
+    <h1>Server</h1>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on("connect", function () {
+        console.log("Connected to server");
+      });
+
+      socket.on("disconnected", function () {
+        console.log("Disconnected to serve");
+      });
+
+      socket.emit("message", {
+        name: "Fernando",
+      });
+
+      socket.on("message", function (data) {
+        console.log(data);
+      });
+
+      socket.on("new-message", function (data) {
+        console.log(data);
+      });
+
+      socket.on("active-bands", function (bands) {
+        console.clear();
+        console.table(bands);
+      });
+    </script>
+  </body>
+</html>
